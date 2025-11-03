@@ -16,9 +16,7 @@ const useSearchStore = create<SearchState>((set) => ({
   setQuery: (q: string) => set({ query: q }),
   setResults: (r: Movie[]) => set({ results: r }),
   performSearch: (q: string) => {
-    // update query immediately so UI can reflect the current text
     set({ query: q });
-
     const qTrim = q.trim();
 
     if (qTrim === "") {
@@ -33,7 +31,5 @@ const useSearchStore = create<SearchState>((set) => ({
     console.log("Search results:", results);
   },
 }));
-
-console.log(useSearchStore);
 
 export default useSearchStore;
