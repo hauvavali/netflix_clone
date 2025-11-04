@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import type { Movie } from "../types";
-import MOVIE_DATA from "../data/mockdata.json";
 
 type SearchState = {
   query: string;
@@ -24,7 +23,7 @@ const useSearchStore = create<SearchState>((set) => ({
       return;
     }
 
-    const results = (MOVIE_DATA.results as Movie[]).filter((movie: Movie) =>
+    const results = ([] as Movie[]).filter((movie: Movie) =>
       movie.name.toLowerCase().includes(qTrim.toLowerCase())
     ) as Movie[];
     set({ results });

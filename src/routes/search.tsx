@@ -2,6 +2,7 @@ import MovieCard from "@/components/MovieCard";
 import { createFileRoute } from "@tanstack/react-router";
 
 import useSearchStore from "@/store/searchStore";
+import { useEffect } from "react";
 
 type MovieSearch = {
   movie: string;
@@ -21,6 +22,12 @@ function SearchComponent() {
   console.log("search query", movie);
 
   const results = useSearchStore((state) => state.results);
+  const performSearch = useSearchStore((state) => state.performSearch);
+
+  useEffect(() => {
+    performSearch(movie);
+  }, [movie]);
+
   console.log("search results from store: ", results);
   return (
     <div>
