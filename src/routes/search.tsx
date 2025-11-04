@@ -1,36 +1,20 @@
-import MovieCard from "@/components/MovieCard";
-import { createFileRoute } from "@tanstack/react-router";
-
+import { createFileRoute, useParams } from "@tanstack/react-router";
+import MovieCard from "../components/MovieCard";
 import useSearchStore from "@/store/searchStore";
-import { useEffect } from "react";
-
-type MovieSearch = {
-  movie: string;
-};
 
 export const Route = createFileRoute("/search")({
   component: SearchComponent,
-  validateSearch: (search: Record<string, unknown>): MovieSearch => {
-    return {
-      movie: (search.movie as string) || "",
-    };
-  },
 });
 
 function SearchComponent() {
-  const { movie } = Route.useSearch();
-  console.log("search query", movie);
+  const movie = Route.useSearch();
+  console.log("Search query:", movie);
 
   const results = useSearchStore((state) => state.results);
-  const performSearch = useSearchStore((state) => state.performSearch);
+  console.log("Search results from store:", results);
 
-  useEffect(() => {
-    performSearch(movie);
-  }, [movie]);
-
-  console.log("search results from store: ", results);
   return (
-    <div>
+    <div className="container mx-auto px-4">
       {results.length > 0 ? (
         <div className="mt-8 p-8 grid grid-cols-fluid gap-6">
           {results.map((movie) => (

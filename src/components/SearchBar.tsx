@@ -1,28 +1,10 @@
+import { useSearchMovies } from "@/lib/useSearchMovies";
 import { Search } from "lucide-react";
-import { useState } from "react";
-import useSearchStore from "../store/searchStore";
-import { useNavigate } from "@tanstack/react-router";
 
-function SearchBar() {
-  const [shouldShowSearch, setShouldShowSearch] = useState(false);
-  console.log(useSearchStore);
-  const performSearch = useSearchStore((state) => state.performSearch);
-  const navigate = useNavigate();
-
-  const handleBlur = () => {
-    setShouldShowSearch(false);
-  };
-  const handleSearchClick = () => {
-    setShouldShowSearch(true);
-  };
-
-  const searchQuery = (query: string) => {
-    performSearch(query);
-    navigate({
-      to: `/search?movie=${query}`,
-    });
-  };
-
+export default function SearchBar() {
+  const { handleBlur, handleSearchClick, searchQuery, shouldShowSearch } =
+    useSearchMovies();
+    
   const handleSearchQueryChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -58,5 +40,3 @@ function SearchBar() {
     </div>
   );
 }
-
-export default SearchBar;
