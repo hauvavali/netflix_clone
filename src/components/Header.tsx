@@ -1,16 +1,41 @@
 import SearchBar from "./SearchBar";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] py-5 ">
-      <div className="max-w-6xl mx-auto px-6 md:px-6 flex justify-between items-center">
+    <header className="app-header">
+      <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+        {/* Brand */}
         <div className="flex-shrink-0">
-          <h1 className="text-2xl lg:text-4xl font-bold text-red-600">
+          <h1 className="text-2xl lg:text-4xl font-bold text-[var(--netflix-red)]">
             REACTFLIX
           </h1>
         </div>
 
-        <SearchBar />
+        {/* Right side */}
+        <div className="flex items-center gap-4">
+          <SignedOut>
+            {/* Sign in button — styled with brand colors */}
+            <SignInButton>
+              <button
+                className="px-3 py-2 rounded text-white   hover:bg-[var(--netflix-red-hover)] transition"
+                type="button"
+              >
+                Sign in
+              </button>
+            </SignInButton>
+          </SignedOut>
+
+          <SignedIn>
+            <SearchBar />
+            <UserButton />
+          </SignedIn>
+        </div>
       </div>
     </header>
   );

@@ -15,7 +15,9 @@ function App() {
     <main>
       <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
         <Hero />
-        <TrendingNow movies={movies} />
+        <div className="container mx-auto mt-6 max-w-6xl px-6">
+          <TrendingNow movies={movies} />
+        </div>
       </div>
     </main>
   );

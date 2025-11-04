@@ -1,16 +1,24 @@
 import { useSearchMovies } from "@/lib/useSearchMovies";
+import { useNavigate } from "@tanstack/react-router";
 import { Search } from "lucide-react";
 
 export default function SearchBar() {
   const { handleBlur, handleSearchClick, searchQuery, shouldShowSearch } =
     useSearchMovies();
-    
+
+  const navigate = useNavigate();
+
+  console.log(shouldShowSearch);
+  
   const handleSearchQueryChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const query = event.target.value;
+    console.log(shouldShowSearch);
 
     searchQuery(query);
+
+    navigate({ to: "/search", search: { movie: query } });
   };
 
   return (
