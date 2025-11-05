@@ -4,6 +4,7 @@ import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
+import react from "@vitejs/plugin-react";
 
 const config = {
   mode: "development",
@@ -19,6 +20,11 @@ const config = {
     tanstackRouter({
       target: "react",
       autoCodeSplitting: true,
+    }),
+    react({
+      babel: {
+        plugins: ["babel-plugin-react-compiler"],
+      },
     }),
     viteStaticCopy({
       targets: [

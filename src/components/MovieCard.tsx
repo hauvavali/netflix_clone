@@ -14,6 +14,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
           }
           alt={movie?.title || "Movie poster"}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 z-10"
+          loading="lazy"
         />
       </Card>
     </button>

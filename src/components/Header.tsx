@@ -1,3 +1,4 @@
+import { useNavigate } from "@tanstack/react-router";
 import SearchBar from "./SearchBar";
 import {
   SignedIn,
@@ -7,12 +8,14 @@ import {
 } from "@clerk/clerk-react";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="app-header">
       <div className="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
         {/* Brand */}
-        <div className="flex-shrink-0">
-          <h1 className="text-2xl lg:text-4xl font-bold text-[var(--netflix-red)]">
+        <div className="flex-shrink-0" onClick={() => navigate({ to: "/" })}>
+          <h1 className="text-2xl lg:text-4xl font-bold text-[var(--netflix-red)] cursor-pointer">
             REACTFLIX
           </h1>
         </div>
